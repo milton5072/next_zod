@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    # local apps
+    "base",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "backend.wsgi.application"
+
+AUTH_USER_MODEL = "base.User"
 
 
 # Database
@@ -117,6 +122,14 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": False,
+}
 
 
 # Static files (CSS, JavaScript, Images)

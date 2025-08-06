@@ -60,11 +60,11 @@ export function useAuth() {
     }
   }, [setUser]);
 
-  const login = async (email: string, password: string) => {
+  const login = async (unique_id: string, password: string) => {
     try {
       const res = await axios.post(
-        `${baseURL}/auth/login/`,
-        { email, password },
+        `${baseURL}/login/`,
+        { unique_id, password },
         {
           headers: {
             "Content-Type": "application/json",
